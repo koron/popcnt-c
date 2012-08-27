@@ -1,19 +1,24 @@
 #include <stdint.h>
 #include <memory.h>
+#include <popcntintrin.h>
 
-/*
- * http://stackoverflow.com/questions/6427473/how-to-generate-a-sse4-2-popcnt-machine-instruction
- */
+/* 32bits version. */
 long popcount_sse4(void *s, long count)
 {
     long n = 0;
-    while (count >= sizeof(uint64_t))
+    long c;
+    uint32_t v;
+    while (count >= sizeof(uint32_t))
     {
-        n += __builtin_popcountll(*((uint64_t*)s));
-        count -= sizeof(uint64_t);
-        s += sizeof(uint64_t);
+        v = *(uint32_t*)s;
+        __asm__("popcnt %1,%0" : "=r"(c) : "r"(v));
+        n += c;
+
+        count -= sizeof(uint32_t);
+        s += sizeof(uint32_t);
     }
-    uint64_t remain = 0;
+    uint32_t remain = 0;
     memcpy(&remain, s, count);
-    return n + __builtin_popcountll(remain);
+    __asm__("popcnt %1,%0" : "=r"(c) : "r"(remain));
+    return n + c;
 }
