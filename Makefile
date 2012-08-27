@@ -1,7 +1,7 @@
 COMMON_OBJ = popcnt.o popcnt_sse4.o popcnt_gnu.o
 
 CC = gcc
-CFLAGS = -msse4.2
+CFLAGS = -msse4.2 -O2
 
 build: test1 test2
 
