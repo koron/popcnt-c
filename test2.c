@@ -4,6 +4,7 @@
 
 long popcount(void *s, long count);
 long popcount_sse4(void *s, long count);
+long popcount_gnu32(void *s, long count);
 
 static void rand_buf(char *buf, int count)
 {
@@ -26,7 +27,7 @@ static void bench_mark(
 
     retval = (*func)(buf, count);
     start = clock();
-    for (i = 0; i < 100; ++i)
+    for (i = 0; i < 50; ++i)
         (*func)(buf, count);
     end = clock();
     printf("%s: %d clock (retval=%d)\n", label, end - start, retval);
@@ -49,6 +50,7 @@ main(int argc, char** argv)
 
     bench_mark("popcount", popcount, buf, count);
     bench_mark("popcount_sse4", popcount_sse4, buf, count);
+    bench_mark("popcount_gnu32", popcount_gnu32, buf, count);
 
     return 0;
 }
