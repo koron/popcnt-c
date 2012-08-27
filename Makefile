@@ -1,10 +1,13 @@
 COMMON_OBJ = popcnt.o popcnt_sse4.o
 CC = gcc
 
-build: test1
+build: test1 test2
 
 test1: test1.c $(COMMON_OBJ)
 	gcc -o $@ test1.c $(COMMON_OBJ)
+
+test2: test2.c $(COMMON_OBJ)
+	gcc -o $@ test2.c $(COMMON_OBJ)
 
 asm: popcnt_sse4.s
 
