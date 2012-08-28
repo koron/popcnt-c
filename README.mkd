@@ -11,3 +11,16 @@ Compile with:
 To test:
 
     $ ./test2
+
+# RESULT
+
+Core i7 3770K 3.5GHz, Windows 7 SP1, MinGW64
+
+    $ ./test2
+    count=100000000
+    initialized.
+    popcount: 1753 clock (retval=399999888)
+    popcount_sse4: 1005 clock (retval=399999888)
+    popcount_gnu32: 1012 clock (retval=399999888)
+    popcount_sse4_64: 520 clock (retval=399999888)
+    popcount_gnu64: 526 clock (retval=399999888)
