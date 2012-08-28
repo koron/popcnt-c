@@ -1,6 +1,13 @@
-PROJECT TO INVESTIGATE POPCOUNT EFFICIENCY BY IMPLEMENTATIONS.
+# PROJECT TO INVESTIGATE POPCOUNT EFFICIENCY BY IMPLEMENTATIONS.
+
 POPCOUNTの速度を検証するプロジェクト
+
+# USAGE
 
 Compile with:
 
-    $ gcc -msse4.2 -o test main.c popcnt.c popcnt_sse4.c
+    $ make
+
+To test:
+
+    $ ./test2
